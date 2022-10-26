@@ -25,13 +25,39 @@ export interface S2Author extends S2AuthorAsSecondaryLarge {
 }
 
 export enum S2ResearchPaperPublicationType {
-  Review = 'Review',
-  JournalArticle = 'JournalArticle',
-  News = 'News',
-  Study = 'Study',
-  LettersAndComments = 'LettersAndComments',
-  Editorial = 'Editorial',
-  ClinicalTrial = 'ClinicalTrial',
+  review = 'Review',
+  journalArticle = 'JournalArticle',
+  news = 'News',
+  study = 'Study',
+  lettersAndComments = 'LettersAndComments',
+  editorial = 'Editorial',
+  clinicalTrial = 'ClinicalTrial',
+}
+
+export enum S2FieldOfStudy {
+  agriculturalAndFoodSciences = 'Agricultural and Food Sciences',
+  art = 'Art',
+  biology = 'Biology',
+  business = 'Business',
+  computerScience = 'Computer Science',
+  chemistry = 'Chemistry',
+  economics = 'Economics',
+  education = 'Education',
+  engineering = 'Engineering',
+  environmentalScience = 'Environmental Science',
+  geography = 'Geography',
+  geology = 'Geology',
+  history = 'History',
+  law = 'Law',
+  linguistics = 'Linguistics',
+  materialsScience = 'Materials Science',
+  mathematics = 'Mathematics',
+  medicine = 'Medicine',
+  philosophy = 'Philosophy',
+  physics = 'Physics',
+  politicalScience = 'Political Science',
+  psychology = 'Psychology',
+  sociology = 'Sociology',
 }
 
 export interface S2ResearchPaperAsSecondary {
@@ -55,11 +81,11 @@ export interface S2ResearchPaperAsSecondary {
   citationCount?: number;
   influentialCitationCount?: number;
   isOpenAccess?: boolean;
-  fieldsOfStudy?: string[];
+  fieldsOfStudy?: S2FieldOfStudy[];
   s2FieldsOfStudy?: {
-    category: string;
+    category: S2FieldOfStudy | string;
     source: 'external' | 's2-fos-model' | string;
-  };
+  }[];
   publicationTypes?: S2ResearchPaperPublicationType[];
   // In the YYYY-MM-DD format
   publicationDate?: string[];
