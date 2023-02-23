@@ -6,11 +6,13 @@ export interface S2AuthorAsSecondarySmall {
   name?: string;
 }
 
+export type S2AuthorExternalIds = {
+  ORCID?: string;
+  DBLP?: string[];
+};
+
 export interface S2AuthorAsSecondaryLarge extends S2AuthorAsSecondarySmall {
-  externalIds: {
-    ORCID?: string;
-    DBLP?: string[];
-  };
+  externalIds: S2AuthorExternalIds;
   url?: string;
   aliases?: string[];
   affiliations?: string[];
@@ -60,19 +62,22 @@ export enum S2FieldOfStudy {
   sociology = 'Sociology',
 }
 
+export type S2ResearchPaperExternalIds = {
+  MAG: string;
+  ArXiv: string;
+  ACL: string;
+  PubMed: string;
+  Medline: string;
+  PubMedCentral: string;
+  DBLP: string;
+  DOI: string;
+  CorpusId: number;
+};
+
 export interface S2ResearchPaperAsSecondary {
   paperId: string;
-  externalIds?: {
-    MAG?: string;
-    ArXiv?: string;
-    ACL?: string;
-    PubMed?: string;
-    Medline?: string;
-    PubMedCentral?: string;
-    DBLP?: string;
-    DOI?: string;
-    CorpusId?: number;
-  };
+  externalIds: S2ResearchPaperExternalIds;
+  url?: string;
   title?: string;
   abstract?: string;
   venue?: string;
@@ -88,7 +93,7 @@ export interface S2ResearchPaperAsSecondary {
   }[];
   publicationTypes?: S2ResearchPaperPublicationType[];
   // In the YYYY-MM-DD format
-  publicationDate?: string[];
+  publicationDate?: string;
   journal?: {
     name: string;
     volume: string;
@@ -108,5 +113,6 @@ export interface S2ResearchPaper extends S2ResearchPaperAsSecondary {
     model?: string;
     vector?: number[];
   };
+  authors?: S2AuthorAsSecondaryLarge[];
 }
 ```
