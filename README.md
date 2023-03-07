@@ -1,3 +1,5 @@
+# S2TypescriptTypes
+
 ```ts
 // NOTE: this is how you might expect to see author objects when they are the
 // child node of a child node
