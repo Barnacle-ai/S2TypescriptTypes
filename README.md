@@ -1,3 +1,4 @@
+```ts
 // NOTE: this is how you might expect to see author objects when they are the
 // child node of a child node
 // - e.g. someAuthor -> their researchPapers -> the authors of the researchPapers
@@ -129,3 +130,4 @@ export interface S2ResearchPaper extends S2ResearchPaperAsSecondary {
   };
   authors?: S2AuthorAsSecondaryLarge[];
 }
+```
