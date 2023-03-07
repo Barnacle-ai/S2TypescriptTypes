@@ -1,6 +1,6 @@
-# S2TypescriptTypes
-
-```typescript
+// NOTE: this is how you might expect to see author objects when they are the
+// child node of a child node
+// - e.g. someAuthor -> their researchPapers -> the authors of the researchPapers
 export interface S2AuthorAsSecondarySmall {
   authorId: string;
   name?: string;
@@ -11,6 +11,11 @@ export type S2AuthorExternalIds = {
   DBLP?: string[];
 };
 
+// NOTE: this is how you might expect to see author objects when they are being
+// returned directly as a child node of
+// e.g. researchPaper -> authors of the researchPaper
+// It's also the format when you get back a list of authors
+// e.g. from : /graph/${apiVersion}/author/search`
 export interface S2AuthorAsSecondaryLarge extends S2AuthorAsSecondarySmall {
   externalIds: S2AuthorExternalIds;
   url?: string;
@@ -22,6 +27,8 @@ export interface S2AuthorAsSecondaryLarge extends S2AuthorAsSecondarySmall {
   hIndex?: number;
 }
 
+// NOTE: this is the author object you can get when getting an author directly.
+// e.g. calling: /graph/${apiVersion}/author/${s2AuthorId}
 export interface S2Author extends S2AuthorAsSecondaryLarge {
   papers?: S2ResearchPaperAsSecondary[];
 }
@@ -74,6 +81,11 @@ export type S2ResearchPaperExternalIds = {
   CorpusId: number;
 };
 
+// NOTE: this is the ResearchPaper object you can expect to get when getting either a list
+// of researchPapers:
+// e.g. calling /recommendations/${apiVersion}/papers
+// or as a child node:
+// e.g. author -> researchPaper or researchPaper -> citations
 export interface S2ResearchPaperAsSecondary {
   paperId: string;
   externalIds: S2ResearchPaperExternalIds;
@@ -102,6 +114,8 @@ export interface S2ResearchPaperAsSecondary {
   authors?: S2AuthorAsSecondarySmall[];
 }
 
+// NOTE: object gotten when querying  a researchPaper directly.
+// e.g. when calling /graph/${apiVersion}/paper/${s2ResearchPaperId}
 export interface S2ResearchPaper extends S2ResearchPaperAsSecondary {
   references?: S2ResearchPaperAsSecondary[];
   citations?: S2ResearchPaperAsSecondary[];
@@ -115,4 +129,3 @@ export interface S2ResearchPaper extends S2ResearchPaperAsSecondary {
   };
   authors?: S2AuthorAsSecondaryLarge[];
 }
-```
